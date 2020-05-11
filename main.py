@@ -5,8 +5,19 @@ import argparse
 
 
 def main_function(data_path, save_path):
+    from blender import scene, data_loader
+
     print(data_path)
     print(save_path)
+    scene.delete_start_cube()
+
+    try:
+        data = data_loader.get_data_from(data_path)
+        print(data)
+    except Exception as e:
+        print(e)
+
+
 
 def main():
     argv = sys.argv
