@@ -9,13 +9,18 @@ class ColumnChart(object):
         self.columns = self.create_columns(data)
         print(data)
         print(self.highest_value)
-        print(self.columns[3].hight)
+        print(self.columns[3].depth)
 
     def create_columns(self, data):
         columns = []
+        width = max_scene_width / (len(data) + 4)
+        depth = width * 0.66
+
         for row in data:
             column = Column(text = row[0], value = row[1])
             column.calculate_height(self.highest_value)
+            column.width = width
+            column.depth = depth
             columns.append(column)
 
         return columns
@@ -27,6 +32,9 @@ class ColumnChart(object):
                 max_value = row[1]
 
         return max_value
+
+    def calculate_width_and_depth(self):
+        pass
 
 class Column(object):
     def __init__(self, text, value):
