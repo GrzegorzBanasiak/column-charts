@@ -5,19 +5,21 @@ import argparse
 
 
 def main_function(data_path, save_path):
-    from blender import scene, data_loader
+    from blender import scene, data_loader, chart
 
-    print(data_path)
-    print(save_path)
     scene.delete_start_cube()
 
     try:
         data = data_loader.get_data_from(data_path)
-        print(data)
     except Exception as e:
         print(e)
+        print('Blander will be closed!')
+        bpy.ops.wm.quit_blender()
+        sys.exit()
 
-
+    #build chart
+    column_chart = chart.ColumnChart(data)
+    #render and save
 
 def main():
     argv = sys.argv
